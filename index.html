@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vicky's AI Scheduler (MVP)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand">🗓️ Vicky's AI Scheduler (MVP)</div>
+      <div class="tz" id="tz"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- LEFT: Upcoming -->
+    <section class="panel">
+      <h2>Upcoming</h2>
+      <div class="sub">Your next items in the next 14 days.</div>
+      <div class="content">
+        <div id="upcoming" class="upcoming"></div>
+        <div class="empty small" id="upcoming-empty">
+          No scheduled items yet. Try the chatbot: 
+          <span class="kbd">"schedule meeting tomorrow at 3pm"</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MIDDLE: Planner + Tasks -->
+    <section class="panel planner">
+      <div>
+        <h2>Create / Edit</h2>
+        <div class="sub">
+          Quick form for precise control. Everything also works via chat in plain English.
+        </div>
+      </div>
+      <div class="content">
+        <form class="add" id="add-form">
+          <input type="hidden" id="task-id" />
+          <div class="row">
+            <input id="title" placeholder="Title (e.g., Project Standup)" required />
+            <input id="who" placeholder="With (e.g., John, Team, Solo)" />
+          </div>
+          <div class="row">
+            <input id="start" type="datetime-local" required />
+            <input id="end" type="datetime-local" />
+          </div>
+          <div class="row">
+            <select id="repeat">
+              <option value="none">No repeat</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+            <select id="remind">
+              <option value="none">No reminder</option>
+              <option value="5">5 min before</option>
+              <option value="15">15 min before</option>
+              <option value="30">30 min before</option>
+              <option value="60">1 hour before</option>
+            </select>
+          </div>
+          <textarea id="notes" rows="3" placeholder="Notes / location / link…"></textarea>
+          <div class="actions">
+            <button class="btn primary" type="submit" id="save-btn">Save</button>
+            <button class="btn ghost" type="button" id="reset-btn">Reset</button>
+            <button class="btn ghost" type="button" id="export-btn">Export JSON</button>
+            <label class="btn ghost" style="display:inline-grid; place-items:center; cursor:pointer;">
+              Import JSON
+              <input id="import-input" type="file" accept="application/json" style="display:none" />
+            </label>
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <h2>All Items</h2>
+        <div class="sub">Click to edit. Use the ✕ to delete.</div>
+      </div>
+      <div class="content">
+        <div id="all" class="upcoming"></div>
+        <div class="empty small" id="all-empty">Nothing here yet.</div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Chatbot -->
+    <section class="panel chat">
+      <div>
+        <h2>AI Chatbot</h2>
+        <div class="sub">
+          Talk to schedule, reschedule, or list items. Example: 
+          <span class="kbd">"schedule review next Monday 9am with Sara for 30m"</span>
+        </div>
+      </div>
+      <div id="chatlog" class="chatlog"></div>
+      <div class="chatbox">
+        <input id="chat-input" placeholder="Type a message… (Enter to send)" />
+        <button class="btn primary" id="send-btn">Send</button>
+      </div>
+    </section>
+  </main>
+  <script src="function.js"></script>
+</body>
+</html>
