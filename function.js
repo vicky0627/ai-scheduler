@@ -346,4 +346,5 @@ function nextWeekday(from, dow, forceNext) {
 // ---------- Boot ----------
 render();
 if ($('#start')) $('#start').value = toLocalDatetimeValue(new Date(Date.now() + 60 * 60 * 1000));
-sys('Hi Vicky! I can schedule things. Try: "schedule meeting tomorrow at 3pm with John for 30m"');
+sys('Hi  I can schedule things. Try: "schedule meeting tomorrow at 3pm with John for 30m"');
+
