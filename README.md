@@ -1,6 +1,7 @@
 # AI Scheduler with Chatbot
 
 **Live Demo:** <https://vicky0627.github.io/ai-scheduler/>
+**netlify link:** <https://vicky-ai-schedulers.netlify.app/>
 
 ## Features
 
